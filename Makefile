@@ -207,12 +207,12 @@ lib: 	hotspot hotfloorplan
 #pull in dependency info for existing .o files
 -include $(OBJ:.o=.d)
 
-.c.$(OEXT):
-	$(CC) $(CFLAGS) -c $*.c
-	$(CC) -MM $(CFLAGS) $*.c > $*.d
+%.$(OEXT): %.c
+	$(CC) $(CFLAGS) -c $<
+	$(CC) -MM $(CFLAGS) $< > $*.d
 
-.cpp.$(OEXT):
-	$(CC) $(CFLAGS) -c $*.cpp
+%.$(OEXT): %.cpp
+	$(CC) $(CFLAGS) -c $<
 
 filelist:
 	@echo $(FLPSRC) $(TEMPSRC) $(PACKSRC) $(BLKSRC) $(GRIDSRC) $(MISCSRC) \
